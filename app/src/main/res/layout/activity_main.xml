@@ -2,11 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btn_Photo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:ignore="DuplicateIds">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -25,6 +23,7 @@
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:hint="NOMBRE"
+        android:maxLength="15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
@@ -37,6 +36,7 @@
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:hint="APELLIDOS"
+        android:maxLength="15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
@@ -49,6 +49,7 @@
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:hint="NACIONALIDAD"
+        android:maxLength="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
@@ -60,6 +61,8 @@
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:hint="EDAD"
+        android:maxLength="3"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
@@ -72,6 +75,7 @@
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:hint="GENERO"
+        android:maxLength="15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
@@ -84,6 +88,8 @@
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:hint="PESO APROXIMADO"
+        android:maxLength="5"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
@@ -137,5 +143,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.903" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
