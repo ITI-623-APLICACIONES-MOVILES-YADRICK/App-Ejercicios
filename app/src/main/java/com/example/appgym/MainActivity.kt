@@ -56,10 +56,8 @@ class MainActivity : AppCompatActivity() {
         imageView = findViewById(R.id.imageView)
         imageButton = findViewById(R.id.btn_Photo)
 
-        // Verifica los permisos de cámara y almacenamiento al inicio
-        checkPermissions()
 
-        // Configura el launcher para la cámara
+        checkPermissions()
         cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 currentPhotoPath?.let {
