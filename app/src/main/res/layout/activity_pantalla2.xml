@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Pantalla2">
+
+    <TextView
+        android:id="@+id/titulo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿COMO QUIERES EMPEZAR?"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <!-- android:scaleType="fitCenter" Ajusta la imagen para que se mantenga su relación de aspecto -->
+    <!-- android:background= "@drawable/border_background" CREA EL BORDE DEL MARCO EN NEGRO SE CREO UN NUEVO DRAWABLE -->
+    <!-- android:padding="10dp" AJUSTO LA IMAGEN DENTRO DEL IMAGENBUTON PARA QUE SE VEA BIEN EL MARCO DEL BORDE -->
+    <!-- android:scaleType="fitCenter" Ajusta la imagen para que se mantenga su relación de aspecto -->
+
+    <ImageButton
+        android:id="@+id/btn_img1"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        android:background="@drawable/border_background"
+        android:scaleType="fitCenter"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.129"
+        app:srcCompat="@mipmap/img1" />
+
+    <ImageButton
+        android:id="@+id/btn_img2"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        android:background="@drawable/border_background"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.129"
+        app:srcCompat="@mipmap/img2" />
+
+    <ImageButton
+        android:id="@+id/btn_img3"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        android:background="@drawable/border_background"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.353"
+        app:srcCompat="@mipmap/img3" />
+
+    <ImageButton
+        android:id="@+id/btn_img4"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        android:background="@drawable/border_background"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.353"
+        app:srcCompat="@mipmap/img4" />
+
+    <ImageButton
+        android:id="@+id/btn_img5"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        android:background="@drawable/border_background"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578"
+        app:srcCompat="@mipmap/img5" />
+
+    <ImageButton
+        android:background="@drawable/border_background"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/btn_img6"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.577"
+        app:srcCompat="@mipmap/img6" />
+
+    <ImageButton
+        android:id="@+id/btn_img7"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        android:background="@drawable/border_background"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.801"
+        app:srcCompat="@mipmap/img7" />
+
+    <ImageButton
+        android:id="@+id/btn_img8"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        android:background="@drawable/border_background"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.801"
+        app:srcCompat="@mipmap/img8" />
+
+    <Button
+        android:id="@+id/botonCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CANCELAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.919" />
+
+    <Button
+        android:id="@+id/btn_ayuda"
+        android:layout_width="121dp"
+        android:layout_height="48dp"
+        android:text="AYUDA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.919" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
