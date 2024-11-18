@@ -36,15 +36,16 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation("androidx.activity:activity-ktx:1.7.0") // Asegúrate de usar la versión correcta
+    implementation("androidx.fragment:fragment-ktx:1.5.5") // Asegúrate de usar la versión correcta
+    // Si necesitas trabajar con permisos específicos de cámara o galería, añádelo aquí
+    implementation("androidx.core:core-ktx:1.10.1") // Para compatibilidad con FileProvider y permisos
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-   // implementation("com.github.PhilJay:MPAndroidChart:v3.1.0") // LIBRERIA PARA LOS GRAFICOS
-
 }
