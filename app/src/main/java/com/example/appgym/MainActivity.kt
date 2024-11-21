@@ -1,5 +1,6 @@
 package com.example.appgym
 
+import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -16,11 +17,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
+import Data.DatabaseHelper
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,9 +45,13 @@ class MainActivity : AppCompatActivity() {
     // Definir el código de solicitud de permisos
     private val PERMISSION_REQUEST_CODE = 100
 
+    private lateinit var dbHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        dbHelper = DatabaseHelper(this)
 
         // Inicializa los EditText
         nombreEditText = findViewById(R.id.textNombre)
@@ -56,16 +63,27 @@ class MainActivity : AppCompatActivity() {
         imageView = findViewById(R.id.imageView)
         imageButton = findViewById(R.id.btn_Photo)
 
-
         checkPermissions()
         cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 currentPhotoPath?.let {
                     val imageUri = Uri.parse(it)
                     imageView.setImageURI(imageUri)
+                    val imageBitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
+
+                    // Obtener los datos del usuario
+                    val name = nombreEditText.text.toString()
+                    val lastName = apellidosEditText.text.toString()
+                    val age = edadEditText.text.toString().toInt()
+                    val gender = generoEditText.text.toString()
+                    val nationality = nacionalidadEditText.text.toString()
+                    val weight = pesoEditText.text.toString().toDouble()
+
+                    // Guardar en la base de datos
+                    saveUserToDatabase(name, lastName, age, gender, nationality, weight, imageBitmap)
                 }
             } else {
-                Toast.makeText(this, "No se capturó la imagen", Toast.LENGTH_SHORT).show()
+                showToast("No se capturó la imagen")
             }
         }
 
@@ -78,10 +96,10 @@ class MainActivity : AppCompatActivity() {
                         imageView.setImageURI(it)
                     }
                 } catch (e: IOException) {
-                    Toast.makeText(this, "Error al seleccionar la imagen", Toast.LENGTH_SHORT).show()
+                    showToast("Error al seleccionar la imagen")
                 }
             } else {
-                Toast.makeText(this, "Error al seleccionar la imagen", Toast.LENGTH_SHORT).show()
+                showToast("Error al seleccionar la imagen")
             }
         }
 
@@ -101,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         val options = arrayOf("Cámara", "Galería")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Selecciona una opción")
-        builder.setItems(options) { dialog, which ->
+        builder.setItems(options) { _, which ->
             when (which) {
                 0 -> openCamera()
                 1 -> openGallery()
@@ -116,7 +134,7 @@ class MainActivity : AppCompatActivity() {
             val imageFile: File? = try {
                 createImageFile()
             } catch (e: IOException) {
-                Toast.makeText(this, "Error al crear el archivo para la imagen", Toast.LENGTH_SHORT).show()
+                showToast("Error al crear el archivo para la imagen")
                 null
             }
 
@@ -154,7 +172,7 @@ class MainActivity : AppCompatActivity() {
             nacionalidadEditText.text.isEmpty() ||
             edadEditText.text.isEmpty() ||
             pesoEditText.text.isEmpty()) {
-            Toast.makeText(this, "Por favor, completa todos los campos correctamente", Toast.LENGTH_SHORT).show()
+            showToast("Por favor, completa todos los campos correctamente")
             return false
         }
         return true
@@ -181,9 +199,9 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                Toast.makeText(this, "Permisos otorgados", Toast.LENGTH_SHORT).show()
+                showToast("Permisos otorgados")
             } else {
-                Toast.makeText(this, "Permisos denegados", Toast.LENGTH_SHORT).show()
+                showToast("Permisos denegados")
                 showPermissionDeniedMessage()
             }
         }
@@ -201,5 +219,35 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
             .create()
             .show()
+    }
+
+    private fun saveUserToDatabase(name: String, lastName: String, age: Int, gender: String, nationality: String, weight: Double, imageBitmap: Bitmap) {
+        val outputStream = ByteArrayOutputStream()
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        val imageByteArray = outputStream.toByteArray()
+
+        val db = dbHelper.writableDatabase
+        val contentValues = ContentValues().apply {
+            put(DatabaseHelper.COLUMN_NAME, name)
+            put(DatabaseHelper.COLUMN_LAST_NAME, lastName)
+            put(DatabaseHelper.COLUMN_AGE, age)
+            put(DatabaseHelper.COLUMN_GENDER, gender)
+            put(DatabaseHelper.COLUMN_NATIONALITY, nationality)
+            put(DatabaseHelper.COLUMN_WEIGHT, weight)
+            put(DatabaseHelper.COLUMN_IMAGE, imageByteArray)
+        }
+
+        val newRowId = db.insert(DatabaseHelper.TABLE_NAME, null, contentValues)
+        if (newRowId == -1L) {
+            showToast("Error al guardar los datos en la base de datos")
+        } else {
+            showToast("Datos guardados exitosamente")
+        }
+
+        db.close()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
